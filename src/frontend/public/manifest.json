@@ -1,0 +1,22 @@
+{
+  "short_name": "Playmodoro",
+  "name": "Playmodoro",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

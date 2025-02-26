@@ -1,0 +1,40 @@
+services:
+  playmodoro:
+    container_name: playmodoro
+    build: ./compose/frontend
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./compose/frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+      - "./src/frontend:/src"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.playmodoro.rule=Host(\"${FRONT_DOMAIN}\")"
+      - "traefik.http.routers.playmodoro.entrypoints=websecure"
+      - "traefik.http.routers.playmodoro.tls.certresolver=myresolver"
+    networks:
+      - web
+  media-api:
+    container_name: media-api
+    build: ./compose/backend
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./compose/backend/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./compose/backend/php-fpm.conf:/etc/php83/php-fpm.d/www.conf
+      - "./src/backend:/var/www/html"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.media-api.rule=Host(\"${BACK_DOMAIN}\")"
+      - "traefik.http.routers.media-api.entrypoints=websecure"
+      - "traefik.http.routers.media-api.tls.certresolver=myresolver"
+    networks:
+      - web
+networks:
+  web:
+    name: web
+    external: true
