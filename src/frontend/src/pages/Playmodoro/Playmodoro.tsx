@@ -13,6 +13,8 @@ import { YoutubePlayer } from '../../components/YoutubePlayer/YoutubePlayer';
 import { PlaymodoroSettings } from '../../components/PlaymodoroSettings/PlaymodoroSettings';
 import { Controls } from '../../components/Controls/Controls';
 import { Search } from '../../components/Search/Search';
+import { ConfigurationPanel } from '../../components/ConfigurationPanel/ConfigurationPanel';
+import { ImportConfigurationPanel } from '../../components/ImportConfigurationPanel/ImportConfigurationPanel';
 
 import {
     motion
@@ -137,6 +139,7 @@ export const Playmodoro: React.FC<PlaylistEditorProps> = ({
                         </div>
                     </Tab>
 
+
                     <Tab name="playmodoro_tabs" caption="ℹ️">
                         <div className="playmodoro_panel setting_panel p-4">
                             <iframe src="/help.html"
@@ -152,34 +155,11 @@ export const Playmodoro: React.FC<PlaylistEditorProps> = ({
 
                     {/* ====================================================================== */}
 
-                    {state.debugMode && (
-                        <Tab name="playmodoro_tabs" caption="💾">
-                            <div className="playmodoro_panel json_panel p-4">
-                                <motion.button
-                                        className="copy_configuration_trigger"
-                                        // whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.7 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                    <RiFileCodeLine
-                                        size={50}
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(JSON.stringify(state.configuration, null, 4));
-                                        }}
-                                    />
-                                </motion.button>
-                                <textarea
-                                    value={JSON.stringify(state.configuration, null, 4)}
-                                    readOnly={true}
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        fontFamily: 'monospace',
-                                        fontSize: '10px',
-                                    }}
-                                ></textarea>
-                            </div>
-                        </Tab>
+                    {state.debugMode || 1  && (
+                        <>
+                            <ConfigurationPanel/>
+                            <ImportConfigurationPanel/>
+                        </>
                     )}
                 </div>
                 <Controls />

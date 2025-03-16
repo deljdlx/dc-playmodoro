@@ -8,6 +8,7 @@
     "@remixicon/react": "^4.6.0",
     "cra-template": "1.2.0",
     "daisyui": "^4.12.23",
+    "dotenv": "^16.4.7",
     "framer-motion": "^11.18.1",
     "or": "^0.2.0",
     "react": "^18.2.0",

@@ -9,6 +9,14 @@ else
     echo "Composer dependencies already installed"
 fi
 
+if [ ! -d /var/www/html/var ]; then
+    echo "Creating var directory"
+    mkdir /var/www/html/var
+else
+    echo "Var directory already exists"
+fi
+
+
 if [ ! -f /var/www/html/var/data.sqlite ]; then
     cp /var/www/html/_provisions/data.sqlite /var/www/html/var/data.sqlite
     echo "Database file copied"
