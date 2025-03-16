@@ -155,7 +155,7 @@ export const Playmodoro: React.FC<PlaylistEditorProps> = ({
 
                     {/* ====================================================================== */}
 
-                    {state.debugMode || 1  && (
+                    {state.debugMode && (
                         <>
                             <ConfigurationPanel/>
                             <ImportConfigurationPanel/>
